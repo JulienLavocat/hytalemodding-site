@@ -1,5 +1,10 @@
 "use client";
-import { ExternalLinkIcon, BookIcon, MessageSquare } from "lucide-react";
+import {
+  ExternalLinkIcon,
+  BookIcon,
+  MessageSquareIcon,
+  ArrowUpRightIcon,
+} from "lucide-react";
 import { FlipWords } from "@/components/ui/flip-words";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { Button } from "@/components/ui/button";
@@ -21,11 +26,13 @@ import Melodium from "./(showcaseImages)/Melodium.gif";
 import GaleWivern from "./(showcaseImages)/gale_wivern.gif";
 import WulfrumArmor from "./(showcaseImages)/Wulfrum_Armor.gif";
 import ElectricMotor from "./(showcaseImages)/HyEnergy_Electric_Motor.gif";
-import HyFableLogo from "./(showcaseImages)/HyFableLogo.jpg";
-import HyFableBanner from "./(showcaseImages)/HyFableBanner.jpg";
+import WulfrumTriangle from "./(showcaseImages)/Wulfrum_triangle.gif";
+import HylandiaBanner from "./(showcaseImages)/Hylandia_Banner.png";
+import HylandiaLogo from "./(showcaseImages)/Hylandia_Logo.png";
 import { DiscordButton } from "./discord-button";
 import { SponsorButton } from "./support-button";
 import { GitInfoButton } from "@/components/git-info-button";
+import { ViewTransition } from "react";
 
 type ProjectType = "art" | "website" | "server" | "mod";
 
@@ -228,15 +235,21 @@ export default function HomePage() {
       type: "art",
     },
     {
-      title: "Hyfable Server Network",
-      author: "by Brad",
-      logo: HyFableLogo,
-      banner: HyFableBanner,
-      type: "server",
-      description:
-        "Hyfable is a Day 1 server preparing for Hytale release! Join us today!",
-      link: "https://hyfable.com",
+      title: "[WIP] Hylamity: Wulfrum Triangle",
+      author: "by alder_",
+      image: WulfrumTriangle,
+      link: "https://discord.gg/f2fMKYnRqR",
+      type: "art",
     },
+    {
+      title: "Hylandia",
+      author: "by Kristian / Hylandia Studios",
+      logo: HylandiaLogo,
+      banner: HylandiaBanner,
+      link: "https://discord.gg/hylandia",
+      type: "server",
+      description: "A progressive minigames server for Hytale where your progress actually matters.",
+    }
   ];
 
   const shuffledItems = [...showcaseItems].sort(() => Math.random() - 0.5);
@@ -263,57 +276,69 @@ export default function HomePage() {
 
       <div className="container mx-auto flex flex-1 flex-col items-center justify-center px-4 py-8 md:px-12">
         <div className="max-w-5xl space-y-8 pt-16 text-center md:pt-0">
-          <div className="space-y-6">
-            <h1 className="text-4xl font-semibold text-balance md:text-5xl">
-              <div>{messages.home.title.split("{flipwords}")[0]}</div>
-              <div>
-                <FlipWords words={messages.home.flipwords} />
-              </div>
-              <div>{messages.home.title.split("{flipwords}")[1]}</div>
-            </h1>
-            <h2 className="text-muted-foreground text-lg text-balance md:text-xl">
-              {messages.home.description}
-            </h2>
-          </div>
+          <ViewTransition name="hero" share="blur-scale-transition">
+            <div className="space-y-6">
+              <h1 className="text-4xl font-semibold text-balance md:text-5xl">
+                <div>{messages.home.title.split("{flipwords}")[0]}</div>
+                <div>
+                  <FlipWords words={messages.home.flipwords} />
+                </div>
+                <div>{messages.home.title.split("{flipwords}")[1]}</div>
+              </h1>
+              <h2 className="text-muted-foreground text-lg text-balance md:text-xl">
+                {messages.home.description}
+              </h2>
+            </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
             <div className="flex flex-wrap justify-center gap-4">
-              <Button asChild>
-                <Link href={localizeHref("/docs", params.lang?.toString())}>
-                  <BookIcon /> {messages.home.documentation}
-                </Link>
-              </Button>
-              <Button asChild>
-                <Link
-                  href="https://forum.hytalemodding.guide"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageSquare /> {messages.home.forum}
-                </Link>
-              </Button>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button asChild>
+                  <Link href={localizeHref("/docs", params.lang?.toString())}>
+                    <BookIcon /> {messages.home.documentation}
+                  </Link>
+                </Button>
+                <Button asChild>
+                  <Link
+                    href="https://forum.hytalemodding.guide"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MessageSquareIcon /> {messages.home.forum}{" "}
+                    <ExternalLinkIcon />
+                  </Link>
+                </Button>
+              </div>
+              <div className="flex flex-wrap justify-center gap-4">
+                <DiscordButton />
+                <SponsorButton />
+              </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              <DiscordButton />
-              <SponsorButton />
-            </div>
-          </div>
+          </ViewTransition>
         </div>
       </div>
 
-      <div className="mt-auto mb-8 w-full py-16 md:mb-4">
-        <Marquee className="h-64 w-full">
-          <MarqueeFade side="left" className="w-12" />
-          <MarqueeContent speed={50} pauseOnHover autoFill={false}>
-            {repeatedItems.map((item, index) => (
-              <MarqueeItem key={`${item.title}-${index}`} className="mx-2">
-                <ShowcaseCard item={item} />
-              </MarqueeItem>
-            ))}
-          </MarqueeContent>
-          <MarqueeFade side="right" className="w-12" />
-        </Marquee>
-      </div>
+        <div className="mt-auto mb-8 w-full py-8 md:mb-4">
+          <Marquee className="h-64 w-full">
+            <MarqueeFade side="left" className="w-12" />
+            <MarqueeContent speed={100} pauseOnHover autoFill={false}>
+              {repeatedItems.map((item, index) => (
+                <MarqueeItem key={`${item.title}-${index}`} className="mx-2">
+                  <ShowcaseCard item={item} />
+                </MarqueeItem>
+              ))}
+            </MarqueeContent>
+            <MarqueeFade side="right" className="w-12" />
+          </Marquee>
+
+          {/* <div className="mt-6 flex justify-center">
+            <Button asChild>
+              <Link href={params?.lang?.toString() + "/projects"}>
+                <ArrowUpRightIcon className="mr-2 h-4 w-4" />
+                View More Projects
+              </Link>
+            </Button>
+          </div> */}
+        </div>
     </div>
   );
 }
