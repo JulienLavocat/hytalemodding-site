@@ -31,7 +31,13 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
-    // MDX options
+    rehypeCodeOptions: {
+      langs: ["java"],
+      themes: {
+        light: "light-plus",
+        dark: "github-dark"
+      }
+    }
   },
   plugins: [lastModified()]
 });
