@@ -5,7 +5,6 @@ import {
   metaSchema,
 } from "fumadocs-mdx/config";
 import { z } from "zod";
-import lastModified from 'fumadocs-mdx/plugins/last-modified';
 
 const extendedSchema = frontmatterSchema.extend({
   authors: z.array(
@@ -38,6 +37,5 @@ export default defineConfig({
         dark: "github-dark"
       }
     }
-  },
-  plugins: [lastModified()]
+  }
 });

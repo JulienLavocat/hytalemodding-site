@@ -29,6 +29,7 @@ import ElectricMotor from "./(showcaseImages)/HyEnergy_Electric_Motor.gif";
 import WulfrumTriangle from "./(showcaseImages)/Wulfrum_triangle.gif";
 import HylandiaBanner from "./(showcaseImages)/Hylandia_Banner.png";
 import HylandiaLogo from "./(showcaseImages)/Hylandia_Logo.png";
+import MagicCircleGust from "./(showcaseImages)/MagicCircleGust.gif"
 import { DiscordButton } from "./discord-button";
 import { SponsorButton } from "./support-button";
 import { GitInfoButton } from "@/components/git-info-button";
@@ -242,6 +243,13 @@ export default function HomePage() {
       type: "art",
     },
     {
+      title: "Saqvobase's Spellcasting: Magic Circle - Gust",
+      author: "by Saqvobase",
+      image: MagicCircleGust,
+      link: "",
+      type: "art"
+    },
+    {
       title: "Hylandia",
       author: "by Kristian / Hylandia Studios",
       logo: HylandiaLogo,
@@ -299,7 +307,7 @@ export default function HomePage() {
                 </Button>
                 <Button asChild>
                   <Link
-                    href="https://forum.hytalemodding.guide"
+                    href="https://forum.hytalemodding.dev"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
