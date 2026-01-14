@@ -22,7 +22,7 @@ The `PermissionsModule` class is responsible for managing permission nodes and g
 - Add user to group
 - Remove user from group
 - List all groups for a user
-- Check if a user has a permission (it checks both user and group permisions for the given player UUID)
+- Check if a user has a permission (it checks both user and group permissions for the given player UUID)
 
 With this class you cannot:
 - List all defined groups
@@ -61,7 +61,7 @@ perms.addGroupPermission(groupName, permissions);
 String groupName = "testGroup";
 Set<String> permissions = new HashSet<>();
 PermissionsModule perms = PermissionsModule.get();
-perms.removeGroupPermission(groupName, perms);
+perms.removeGroupPermission(groupName, permissions);
 ```
 
 ### Add user to group
@@ -83,7 +83,7 @@ perms.removeUserFromGroup(playerUUID, groupName);
 ### List all groups for a user
 ```java
 PermissionsModule perms = PermissionsModule.get();
-perms.removeUserFromGrgetGroupsForUseroup(playerUUID);
+perms.getGroupsForUser(playerUUID);
 ```
 
 ### Check Permission Nodes
